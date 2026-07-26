@@ -72,8 +72,8 @@ const Kanban = () => {
     <div className="p-6 h-[calc(100vh-64px)] flex flex-col max-w-[1600px] mx-auto">
       <div className="mb-6 flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-slate-800">Project Alpha Board</h2>
-          <p className="text-slate-500 text-sm mt-1">Manage your tasks and workflow</p>
+          <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Project Alpha Board</h2>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage your tasks and workflow</p>
         </div>
       </div>
 
@@ -85,10 +85,10 @@ const Kanban = () => {
               const tasks = column.taskIds.map((taskId) => data.tasks[taskId]);
 
               return (
-                <div key={column.id} className="w-[320px] shrink-0 bg-slate-50 rounded-xl p-4 border border-slate-200/60 max-h-full flex flex-col">
+                <div key={column.id} className="w-[320px] shrink-0 bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 border border-slate-200/60 dark:border-slate-700 max-h-full flex flex-col">
                   <div className="flex items-center justify-between mb-4 px-1">
-                    <h3 className="font-semibold text-slate-700 text-sm">{column.title}</h3>
-                    <span className="bg-slate-200 text-slate-600 text-xs py-0.5 px-2 rounded-full font-medium">
+                    <h3 className="font-semibold text-slate-700 dark:text-slate-200 text-sm">{column.title}</h3>
+                    <span className="bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs py-0.5 px-2 rounded-full font-medium">
                       {tasks.length}
                     </span>
                   </div>
@@ -98,7 +98,7 @@ const Kanban = () => {
                       <div
                         ref={provided.innerRef}
                         {...provided.droppableProps}
-                        className={`flex-1 overflow-y-auto min-h-[150px] transition-colors rounded-lg ${snapshot.isDraggingOver ? 'bg-slate-100' : ''}`}
+                        className={`flex-1 overflow-y-auto min-h-[150px] transition-colors rounded-lg ${snapshot.isDraggingOver ? 'bg-slate-100 dark:bg-slate-800' : ''}`}
                       >
                         <div className="space-y-3 pb-2">
                           {tasks.map((task, index) => (
@@ -110,15 +110,15 @@ const Kanban = () => {
                                   {...provided.dragHandleProps}
                                   style={{...provided.draggableProps.style}}
                                 >
-                                  <Card className={`shadow-sm border border-slate-200/60 cursor-grab active:cursor-grabbing hover:border-indigo-300 transition-colors ${snapshot.isDragging ? 'shadow-lg rotate-2 scale-105' : ''}`}>
+                                  <Card className={`shadow-sm border border-slate-200/60 dark:border-slate-700 cursor-grab active:cursor-grabbing hover:border-indigo-300 dark:hover:border-indigo-500 transition-colors ${snapshot.isDragging ? 'shadow-lg rotate-2 scale-105' : ''}`}>
                                     <CardBody className="p-4 space-y-3">
                                       <div className="flex justify-between items-start">
                                         <PriorityBadge priority={task.priority} />
                                       </div>
-                                      <p className="text-sm font-medium text-slate-800 leading-snug">{task.content}</p>
+                                      <p className="text-sm font-medium text-slate-800 dark:text-slate-200 leading-snug">{task.content}</p>
                                       
                                       <div className="flex items-center justify-between pt-2">
-                                        <div className="flex items-center space-x-3 text-slate-400">
+                                          <div className="flex items-center space-x-3 text-slate-400 dark:text-slate-500">
                                           <div className="flex items-center text-xs">
                                             <Clock size={14} className="mr-1" /> {task.date}
                                           </div>

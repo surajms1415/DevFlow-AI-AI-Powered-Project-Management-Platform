@@ -5,10 +5,12 @@ import { Input } from '../components/ui/Input';
 import { User, Lock, Bell, Palette, LogOut, Trash2 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../components/ui/Toast';
+import { useTheme } from '../context/ThemeContext';
 
 const Settings = () => {
   const { user } = useAuth();
   const { addToast } = useToast();
+  const { theme, setTheme } = useTheme();
   const [activeTab, setActiveTab] = useState('profile');
 
   const tabs = [
@@ -28,8 +30,8 @@ const Settings = () => {
         return (
           <div className="space-y-6 max-w-2xl">
             <div>
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Profile Information</h3>
-              <p className="mt-1 text-sm text-gray-500">Update your account's profile information and email address.</p>
+              <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Profile Information</h3>
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Update your account's profile information and email address.</p>
             </div>
             <form onSubmit={handleSave} className="space-y-4">
               <Input label="Full Name" defaultValue={user?.name || ''} />
@@ -42,8 +44,8 @@ const Settings = () => {
         return (
           <div className="space-y-6 max-w-2xl">
             <div>
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Update Password</h3>
-              <p className="mt-1 text-sm text-gray-500">Ensure your account is using a long, random password to stay secure.</p>
+              <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Update Password</h3>
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Ensure your account is using a long, random password to stay secure.</p>
             </div>
             <form onSubmit={handleSave} className="space-y-4">
               <Input label="Current Password" type="password" />
@@ -52,9 +54,9 @@ const Settings = () => {
               <Button type="submit" className="mt-4">Update Password</Button>
             </form>
             
-            <div className="pt-6 border-t border-gray-200 mt-10">
-              <h3 className="text-lg font-medium text-red-600">Delete Account</h3>
-              <p className="mt-1 text-sm text-gray-500 mb-4">Permanently delete your account and all associated data.</p>
+            <div className="pt-6 border-t border-gray-200 dark:border-slate-700 mt-10">
+              <h3 className="text-lg font-medium text-red-600 dark:text-red-500">Delete Account</h3>
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 mb-4">Permanently delete your account and all associated data.</p>
               <Button variant="danger" icon={<Trash2 size={16} />}>Delete Account</Button>
             </div>
           </div>
@@ -63,19 +65,23 @@ const Settings = () => {
         return (
           <div className="space-y-6 max-w-2xl">
             <div>
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Appearance & Preferences</h3>
-              <p className="mt-1 text-sm text-gray-500">Customize how DevFlow AI looks and acts on your device.</p>
+              <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Appearance & Preferences</h3>
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Customize how DevFlow AI looks and acts on your device.</p>
             </div>
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 border rounded-lg">
+              <div className="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
                 <div>
-                  <p className="font-medium">Theme</p>
-                  <p className="text-sm text-gray-500">Select your preferred theme</p>
+                  <p className="font-medium dark:text-slate-100">Theme</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Select your preferred theme</p>
                 </div>
-                <select className="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 bg-white border">
-                  <option>Light</option>
-                  <option>Dark</option>
-                  <option>System</option>
+                <select 
+                  className="border-gray-300 dark:border-slate-600 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 bg-white dark:bg-slate-800 dark:text-white border"
+                  value={theme}
+                  onChange={(e) => setTheme(e.target.value)}
+                >
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                  <option value="system">System</option>
                 </select>
               </div>
             </div>
@@ -89,8 +95,8 @@ const Settings = () => {
   return (
     <div className="p-6 max-w-[1200px] mx-auto h-[calc(100vh-64px)] overflow-y-auto">
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-slate-800">Settings</h2>
-        <p className="text-slate-500 text-sm mt-1">Manage your account settings and preferences.</p>
+        <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Settings</h2>
+        <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage your account settings and preferences.</p>
       </div>
 
       <div className="flex flex-col md:flex-row gap-8">
@@ -104,11 +110,11 @@ const Settings = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`w-full flex items-center space-x-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                     activeTab === tab.id
-                      ? 'bg-indigo-50 text-indigo-700'
-                      : 'text-gray-700 hover:bg-gray-50'
+                      ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-800'
                   }`}
                 >
-                  <Icon size={18} className={activeTab === tab.id ? 'text-indigo-700' : 'text-gray-400'} />
+                  <Icon size={18} className={activeTab === tab.id ? 'text-indigo-700 dark:text-indigo-400' : 'text-gray-400 dark:text-gray-500'} />
                   <span>{tab.label}</span>
                 </button>
               );
@@ -117,7 +123,7 @@ const Settings = () => {
         </aside>
 
         <main className="flex-1 min-w-0">
-          <Card className="min-h-[500px] shadow-sm border border-gray-200">
+          <Card className="min-h-[500px] shadow-sm border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
             <CardBody className="p-8">
               {renderContent()}
             </CardBody>

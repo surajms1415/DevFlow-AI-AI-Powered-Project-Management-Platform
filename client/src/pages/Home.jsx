@@ -51,8 +51,8 @@ const Home = () => {
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto w-full">
       <div>
-        <h2 className="text-2xl font-bold text-slate-800">{renderGreeting()}</h2>
-        <p className="text-slate-500">Here's what's happening with your projects today.</p>
+        <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">{renderGreeting()}</h2>
+        <p className="text-slate-500 dark:text-slate-400">Here's what's happening with your projects today.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -65,7 +65,7 @@ const Home = () => {
         <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-lg text-slate-800">Productivity Velocity</h3>
+              <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Productivity Velocity</h3>
             </CardHeader>
             <CardBody>
               <ProductivityChart />
@@ -74,7 +74,7 @@ const Home = () => {
 
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-lg text-slate-800">Recent Activity</h3>
+              <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Recent Activity</h3>
             </CardHeader>
             <CardBody className="p-4">
               <ActivityItem title="Sarah pushed to main branch" time="2 hours ago" userInitial="S" />
@@ -88,7 +88,7 @@ const Home = () => {
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-lg text-slate-800">Tasks Due Today</h3>
+              <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Tasks Due Today</h3>
             </CardHeader>
             <CardBody className="p-4">
               <TaskItem title="API Integration" project="Project Alpha" status="In Progress" />
@@ -100,7 +100,7 @@ const Home = () => {
 
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-lg text-slate-800">Upcoming Deadlines</h3>
+              <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Upcoming Deadlines</h3>
             </CardHeader>
             <CardBody className="p-4">
               <div className="space-y-4">

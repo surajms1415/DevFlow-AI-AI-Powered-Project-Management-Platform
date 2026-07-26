@@ -4,7 +4,7 @@ import { Input } from './Input';
 
 export const Navbar = () => {
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between px-6 glass">
+    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between px-6 glass dark:bg-slate-900/80 dark:border-b dark:border-slate-800">
       <div className="flex items-center gap-4 flex-1">
         <h1 className="text-xl font-bold text-indigo-600 mr-8">DevFlow AI</h1>
         <div className="hidden md:block w-96">
@@ -12,7 +12,7 @@ export const Navbar = () => {
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <button className="p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors">
+        <button className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-colors">
           <Bell size={20} />
         </button>
         <Avatar initials="JD" className="bg-indigo-100 text-indigo-600" />

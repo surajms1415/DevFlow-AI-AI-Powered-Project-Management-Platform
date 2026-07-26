@@ -15,6 +15,9 @@ const app = express();
 // Set security HTTP headers
 app.use(helmet());
 
+// Enable cors
+app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:5173', credentials: true }));
+
 // Limit repeated failed requests to API endpoints
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -28,15 +31,10 @@ app.use(express.json());
 // Parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
 
-// Sanitize data against NoSQL injection & XSS
-app.use(mongoSanitize());
-app.use(xss());
+// Sanitize data (Skipped for Express 5 compatibility)
 
 // gzip compression
 app.use(compression());
-
-// Enable cors
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 
 // Parse cookies
 app.use(cookieParser());
